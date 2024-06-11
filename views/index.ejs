@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>
+    <%= pageTitle %>
+  </title>
+  <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="h-full overflow-y-auto">
+  <div class="w-full">
+    <h1 class="text-4xl text-center font-semibold text-pink-800">
+      <%= serviceData.serviceName %> | Virtual Tour
+    </h1>
+  </div>
+  <a-scene>
+    <a-assets>
+      <% if(serviceData.serviceName==="Empire Marquee" ) { %>
+        <img id="a1" src="/virtual-assets/EmpireMarquee/1.jpg" />
+        <img id="a2" src="/virtual-assets/EmpireMarquee/2.jpg" />
+        <img id="a3" src="/virtual-assets/EmpireMarquee/3.jpg" />
+      <% } else if(serviceData.serviceName === "Haveli Hall") { %>
+        <img id="a1" src="/virtual-assets/DefaultVenue/new.jpg" />
+        <img id="a2" src="/virtual-assets/EmpireMarquee/2.jpg" />
+        <img id="a3" src="/virtual-assets/EmpireMarquee/3.jpg" />
+      <% } %>
+    </a-assets>
+    <a-camera>
+      <a-cursor color="white"></a-cursor>
+    </a-camera>
+    <a-image id="image1" src="#a1" position="-1.5 1.8 -3"></a-image>
+    <a-image id="image2" src="#a2" position="0 1.8 -3"></a-image>
+    <a-image id="image3" src="#a3" position="1.5 1.8 -3"></a-image>
+    <a-text value="Welcome to Virtual Tour" position="1.5 0.8 -3" color="white"></a-text>
+    <a-sky src="#a1" id="sky"></a-sky>
+  </a-scene>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var sky = document.getElementById('sky');
+      var image1 = document.getElementById('image1');
+      var image2 = document.getElementById('image2');
+      var image3 = document.getElementById('image3');
+
+      image1.addEventListener('click', function () {
+        sky.setAttribute('src', '#a1');
+      });
+
+      image2.addEventListener('click', function () {
+        sky.setAttribute('src', '#a2');
+      });
+
+      image3.addEventListener('click', function () {
+        sky.setAttribute('src', '#a3');
+      });
+    });
+  </script>
+</body>
+
+</html>
